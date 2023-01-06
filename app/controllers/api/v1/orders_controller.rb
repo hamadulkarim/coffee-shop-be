@@ -29,7 +29,7 @@ module Api
           current_cart.line_items.update_all(cart_id: nil)
         end
 
-        return if @order.save
+        render :show and return if @order.save
 
         render_attributes_errors(@order.errors)
       end

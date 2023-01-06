@@ -23,10 +23,10 @@ describe 'PUT api/v1/users/password/', { type: :request } do
       it { expect(user.reload).to be_valid_password(new_password) }
 
       it 'returns the user data' do
-        expect(json[:user]).to include_json(id: user.id,
-                                            first_name: user.first_name,
-                                            last_name: user.last_name,
-                                            email: user.email)
+        expect(json[:body][:user]).to include_json(id: user.hashid,
+                                                   first_name: user.first_name,
+                                                   last_name: user.last_name,
+                                                   email: user.email)
       end
 
       it 'returns a valid client and access token' do

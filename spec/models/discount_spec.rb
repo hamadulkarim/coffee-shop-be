@@ -20,9 +20,11 @@
 #  fk_rails_...  (discounted_food_id => foods.id)
 #
 describe Discount, type: :model do
-  let(:discounted_food) { create(:food) }
   subject(:discount) { create(:discount, discounted_food: discounted_food) }
 
+  let(:discounted_food) { create(:food) }
+
+  # resolve
   describe 'associations' do
     it do
       is_expected
@@ -38,6 +40,7 @@ describe Discount, type: :model do
   end
 
   describe 'validations' do
+    # resolve
     it do
       is_expected
         .to validate_uniqueness_of(:discounted_food_id)
@@ -58,7 +61,7 @@ describe Discount, type: :model do
 
   describe '#amount_discounted' do
     it 'returns the amount discounted on the food item' do
-      amount = discounted_food.price * discount.discount_rate / 100
+      amount = (discounted_food.price * discount.discount_rate / 100).round(3)
       expect(discount.amount_discounted).to eq(amount)
     end
   end

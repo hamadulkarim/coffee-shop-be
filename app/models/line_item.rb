@@ -34,12 +34,13 @@ class LineItem < ApplicationRecord
   validates :food_id, uniqueness: { scope: :cart_id }
   validates :order_id, presence: true, unless: -> { cart_id? }
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 1 }
+  # resolve
   validates :quantity, numericality: { equal_to: 1 }, if: -> { food.complementary? }
 
   validate :food_is_in_stock, on: :create
 
   def total_price
-    quantity * food.taxed_price
+    (quantity * food.taxed_price).round(3)
   end
 
   private

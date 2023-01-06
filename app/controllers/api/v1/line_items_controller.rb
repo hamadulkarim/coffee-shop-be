@@ -22,7 +22,7 @@ module Api
       def destroy
         @line_item.destroy
 
-        render body: nil, status: :no_content
+        render :show, status: :no_content
       end
 
       # TODO: check if there occurs any race conditions?

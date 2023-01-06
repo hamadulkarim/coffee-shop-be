@@ -8,8 +8,8 @@ describe 'GET /api/v1/user', { type: :request } do
     include_examples 'have http status', :ok
 
     specify do
-      expect(json[:user]).to include_json(
-        id: user.id,
+      expect(json[:body][:user]).to include_json(
+        id: user.hashid,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email

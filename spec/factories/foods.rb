@@ -33,7 +33,7 @@ FactoryBot.define do
 
     trait :paid do
       category { 'paid' }
-      price { Faker::Commerce.price }
+      price { Faker::Commerce.price(range: 0..50.0) }
     end
   end
 end

@@ -1,14 +1,13 @@
 describe 'GET /api/v1/orders', { type: :request, skip_request: true } do
-  let(:request) { get api_v1_orders_path, headers: headers, as: :json }
   let(:user) { create(:user) }
   let!(:order) { create(:order, user: user) }
+  let!(:line_item) { order.line_items.first }
+  let!(:request!) { get api_v1_orders_path, headers: headers, as: :json }
 
   context 'with user not signed in' do
-    it 'does not render index template' do
-      request
+    include_examples 'have http status', :unauthorized
 
-      expect(response.status).to eq(401)
-      expect(response).to have_http_status(:unauthorized)
+    specify do
       expect(JSON.parse(response.body)['errors']).to include('Authentication is required to perform this action')
     end
   end
@@ -16,20 +15,32 @@ describe 'GET /api/v1/orders', { type: :request, skip_request: true } do
   context 'with user signed in' do
     let(:headers) { auth_headers }
 
-    it 'returns a successful response with index template' do
-      request
+    include_examples 'have http status', :ok
 
-      expect(response.status).to eq(200)
-      expect(response).to have_http_status(:ok)
+    specify 'renders index template' do
       expect(response).to render_template('index')
+    end
+
+    specify 'checks instance variable' do
       expect(assigns(:orders)).to match_array([order])
-      expect(json[:orders]).to include(
+    end
+
+    specify 'checks data returned' do
+      expect(json[:body][:orders]).to include(
         {
+          id: order.hashid,
           status: order.status,
           total_prep_time: order.total_prep_time,
-          total_bill: order.total_bill,
+          sub_total: order.sub_total,
           total_discount: order.total_discount,
-          items: []
+          total_bill: order.total_bill,
+          items: [
+            id: line_item.hashid,
+            quantity: line_item.quantity,
+            order: line_item.order_id,
+            food: line_item.food.name,
+            total_price: line_item.total_price.round(3)
+          ]
         }
       )
     end

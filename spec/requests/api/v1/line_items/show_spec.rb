@@ -1,8 +1,8 @@
-describe 'PATCH /api/v1/line_items/:id/reduce', { type: :request, skip_request: true } do
+describe 'GET /api/v1/line_item/:id', { type: :request, skip_request: true } do
   let(:user) { create(:user) }
   let(:cart) { create(:cart, user: user) }
-  let!(:line_item) { create(:line_item, cart: cart, quantity: 2) }
-  let!(:request!) { patch api_v1_line_item_reduce_path(line_item), headers: headers, as: :json }
+  let!(:line_item) { create(:line_item, cart: cart) }
+  let!(:request!) { get api_v1_line_item_path(line_item), headers: headers, as: :json }
 
   context 'with user not signed in' do
     include_examples 'have http status', :unauthorized
@@ -26,16 +26,12 @@ describe 'PATCH /api/v1/line_items/:id/reduce', { type: :request, skip_request: 
     end
 
     specify 'checks data returned' do
-      expect(assigns(:line_item)).to eq(line_item)
-    end
-
-    specify 'checks data returned' do
       expect(json[:body][:line_item]).to include(
         {
-          quantity: line_item.quantity - 1,
+          quantity: line_item.quantity,
           order: line_item.order_id,
           food: line_item.food.name,
-          total_price: ((line_item.total_price / line_item.quantity) * (line_item.quantity - 1)).round(3)
+          total_price: line_item.total_price.round(3)
         }
       )
     end

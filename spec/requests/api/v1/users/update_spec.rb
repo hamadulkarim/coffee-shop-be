@@ -63,7 +63,7 @@ describe 'PUT /api/v1/user', { type: :request } do
 
           specify do
             expect(json[:user]).to include_json(
-              id: user.id,
+              id: user.hashid,
               first_name: user.first_name,
               last_name: user.last_name,
               email: user.email

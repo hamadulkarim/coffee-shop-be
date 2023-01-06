@@ -33,12 +33,13 @@ class Discount < ApplicationRecord
   validate :not_on_complementary_foods
 
   def amount_discounted
-    discounted_food.price * discount_rate / 100
+    (discounted_food.price * discount_rate / 100).round(3)
   end
 
   private
 
   def not_on_complementary_foods
+    # resolve
     return if discounted_food.paid? && combination_food.paid?
 
     errors.add(:order, 'can not be created on complementary foods')

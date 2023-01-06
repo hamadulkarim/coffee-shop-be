@@ -44,7 +44,7 @@ class Food < ApplicationRecord
   validate :paid_food_price_is_not_zero
 
   def taxed_price
-    price + ((price * tax_rate) / 100)
+    (price + ((price * tax_rate) / 100)).round(3)
   end
 
   private

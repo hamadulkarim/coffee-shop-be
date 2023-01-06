@@ -30,6 +30,7 @@ describe LineItem, type: :model do
       is_expected.to belong_to(:cart).optional
     end
 
+    # resolve
     it do
       is_expected.to belong_to(:food)
     end

@@ -23,7 +23,7 @@ FactoryBot.define do
 
     after(:build) do |order|
       order.save(validate: false)
-      create_list(:line_item, 4, :for_order, order: order)
+      create_list(:line_item, 1, :for_order, order: order)
     end
   end
 end
