@@ -20,7 +20,7 @@ describe 'POST /api/v1/orders', { type: :request, skip_request: true } do
     # resolve
     include_examples 'have http status', :ok
 
-    specify 'renders index template' do
+    specify 'renders show template' do
       expect(response).to render_template('show')
     end
 
