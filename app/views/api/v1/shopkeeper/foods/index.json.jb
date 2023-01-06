@@ -1,0 +1,14 @@
+{
+  status: 'success',
+
+  body: {
+    foods: (render partial: 'api/v1/foods/food', collection: @foods, as: :food)
+  },
+
+  pagination: {
+    displayed_foods: @pagy.items,
+    total_foods: @pagy.count,
+    current_page: @pagy.in,
+    total_pages: @pagy.pages
+  }
+}

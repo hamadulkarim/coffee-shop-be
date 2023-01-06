@@ -1,0 +1,7 @@
+{
+  status: 'success',
+
+  body: {
+    line_item: render('api/v1/line_items/line_item', line_item: @line_item)
+  }
+}

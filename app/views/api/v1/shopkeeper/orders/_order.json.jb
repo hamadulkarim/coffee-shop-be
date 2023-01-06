@@ -1,0 +1,15 @@
+{
+  # TODO: id is missing here
+  id: order.hashid,
+  user: order.user.first_name,
+  status: order.status,
+  total_prep_time: order.total_prep_time,
+  sub_total: order.sub_total,
+  total_discount: order.total_discount,
+  total_bill: order.total_bill,
+  items: (
+    order.line_items.map do |line_item|
+      render('api/v1/line_items/line_item', line_item: line_item)
+    end
+  )
+}

@@ -1,0 +1,1523 @@
+{
+	"info": {
+		"_postman_id": "d29d9eca-7fe3-4bef-9913-5fbbec8972ca",
+		"name": "Coffee Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24458553"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Content Type",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"johndoe@gmail.com\",\n        \"password\": \"abcd1234\",\n        \"role\": \"shopkeeper\",\n        \"locale\": \"es\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Content Type",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"johndoe@gmail.com\",\n        \"password\": \"abcd1234\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/sign_in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "qKCJdFduICQHZOgiqR2OGw",
+								"type": "text"
+							},
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "FFVEcsqkCnczRxfqBr2tug",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/sign_out",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"sign_out"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "Get all Foods",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/foods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Food by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "client",
+								"value": "HEsLWb-4cIQdWG-ok4TzyA",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "NEgjAz2c8ofDiDiNyowKNQ",
+								"type": "text"
+							},
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/foods/GMlh0Y",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"foods",
+								"GMlh0Y"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get all User Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new User Orders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "client",
+								"value": "cMluO5I3pipJRXidoAgSVw",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "h2gKIOHVRNnUAMv--xPPsQ",
+								"type": "text"
+							},
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Content Type",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order\": {\n        \"status\": 0\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/vaQTEv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"vaQTEv"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Display Cart details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empty Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "client",
+								"value": "cMluO5I3pipJRXidoAgSVw",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "h2gKIOHVRNnUAMv--xPPsQ",
+								"type": "text"
+							},
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Content Type",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Cookie",
+								"value": "_app_session=user_id%3D123",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/carts/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"carts",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Line Item",
+			"item": [
+				{
+					"name": "Create Line Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"food_id\": 9,\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/line_items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"line_items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Increment Line Item",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/line_items/YKasyd/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"line_items",
+								"YKasyd",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decrement Line Item",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/line_items/YKasyd/reduce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"line_items",
+								"YKasyd",
+								"reduce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Line Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/line_items/YKasyd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"line_items",
+								"YKasyd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discounts",
+			"item": [
+				{
+					"name": "Get all Discounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/discounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"discounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Discount by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "johndoe@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/discounts/wqnh2M",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"discounts",
+								"wqnh2M"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopkeeper",
+			"item": [
+				{
+					"name": "Foods",
+					"item": [
+						{
+							"name": "Create new food",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": "JSON Content Type",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Chocolate pie\",\n    \"description\": \"Double Chocolate\",\n    \"price\": 3.5,\n    \"tax_rate\": 11,\n    \"status\": \"available\",\n    \"prep_mins\": 5,\n    \"category\": \"paid\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"foods"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Foods",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"foods"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/GMlh0Y",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"foods",
+										"GMlh0Y"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update food by ID",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": 14.12\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/GMlh0Y",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"foods",
+										"GMlh0Y"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy food by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/wPJhOk",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"foods",
+										"wPJhOk"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Carts",
+					"item": [
+						{
+							"name": "Get all Carts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/carts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"carts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Cart by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/carts/jopskM",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"carts",
+										"jopskM"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Get all Orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/orders/mWoTQm",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"orders",
+										"mWoTQm"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order status by ID",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"fulfilled\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/orders/mWoTQm",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"orders",
+										"mWoTQm"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Discounts",
+					"item": [
+						{
+							"name": "Get all Discounts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"discounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Discount by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/wqnh2M",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"discounts",
+										"wqnh2M"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new Discount",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"discounted_food_id\": 18,\n    \"combination_food_id\": 15,\n    \"discount_rate\": 75\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"discounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Discount by ID",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"discount_rate\": 9\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/wqnh2M",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"discounts",
+										"wqnh2M"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy Discount by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token-type",
+										"value": "Bearer",
+										"type": "text"
+									},
+									{
+										"key": "uid",
+										"value": "jdoe@gmail.com",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"type": "text"
+									},
+									{
+										"key": "client",
+										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/EVAhmG",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"shopkeeper",
+										"discounts",
+										"EVAhmG"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

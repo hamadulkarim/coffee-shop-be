@@ -1,0 +1,7 @@
+{
+  status: 'success',
+
+  body: {
+    food: render('api/v1/foods/food', food: @food)
+  }
+}

@@ -1,0 +1,14 @@
+{
+  status: 'success',
+
+  body: {
+    discounts: (render partial: 'api/v1/discounts/discount', collection: @discounts, as: :discount)
+  },
+
+  pagination: {
+    displayed_discounts: @pagy.items,
+    total_discounts: @pagy.count,
+    current_page: @pagy.in,
+    total_pages: @pagy.pages
+  }
+}

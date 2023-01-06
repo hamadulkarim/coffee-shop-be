@@ -1,0 +1,7 @@
+{
+  status: 'success',
+
+  body: {
+    discount: render('api/v1/discounts/discount', discount: @discount)
+  }
+}

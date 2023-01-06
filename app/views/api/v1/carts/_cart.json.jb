@@ -1,0 +1,14 @@
+# TODO: id is missing here
+{
+  id: cart.hashid,
+  user: current_user.first_name,
+  total_prep_time: cart.total_prep_time,
+  sub_total: cart.sub_total,
+  total_discount: cart.total_discount,
+  total_bill: cart.total_bill,
+  items: (
+    cart.line_items.map do |line_item|
+      render('api/v1/line_items/line_item', line_item: line_item)
+    end
+  )
+}

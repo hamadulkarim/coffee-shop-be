@@ -1,0 +1,7 @@
+{
+  status: 'success',
+
+  body: {
+    current_cart: render('api/v1/carts/cart', cart: current_cart)
+  }
+}

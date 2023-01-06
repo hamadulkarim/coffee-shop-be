@@ -1,0 +1,7 @@
+{
+  id: discount.hashid,
+  discount_on: discount.discounted_food.name,
+  in_combination: discount.combination_food.name,
+  discount_rate: discount.discount_rate,
+  amount_discounted: discount.amount_discounted
+}

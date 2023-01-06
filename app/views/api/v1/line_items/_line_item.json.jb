@@ -1,0 +1,8 @@
+{
+  # TODO: id is missing here
+  id: line_item.hashid,
+  quantity: line_item.quantity,
+  order: line_item.order_id,
+  food: line_item.food.name,
+  total_price: line_item.total_price
+}

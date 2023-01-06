@@ -1,0 +1,7 @@
+{
+  status: 'success',
+
+  body: {
+    order: render('api/v1/orders/order', order: @order)
+  }
+}
