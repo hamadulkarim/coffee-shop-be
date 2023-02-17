@@ -1,5 +1,4 @@
 {
-  # TODO: id is missing here
   id: food.hashid,
   name: food.name,
   description: food.description,

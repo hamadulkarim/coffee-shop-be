@@ -2,12 +2,21 @@ class UpdateOrderJob < ApplicationJob
   queue_as :default
 
   def perform
-    pending_orders ||= Order.pending
+    orders_to_update = prepared_orders
 
-    pending_orders.each do |order|
-      if (Time.zone.now - order.created_at) / 1.minute > order.total_prep_time
-        order.update(status: 'fulfilled')
-      end
+    orders_to_update.each do |order|
+      order.update(status: 'fulfilled')
+
+      OrderStatusMailer.with(user: order.user, order: order).send_status.deliver_now
     end
+  end
+
+  def prepared_orders
+    Order
+      .includes(line_items: [:food])
+      .preparing
+      .select do |order|
+        (Time.zone.now - order.created_at) / 1.minute > order.total_prep_time
+      end
   end
 end

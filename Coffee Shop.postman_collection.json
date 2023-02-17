@@ -13,22 +13,10 @@
 					"name": "Create User",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "JSON Content Type",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"johndoe@gmail.com\",\n        \"password\": \"abcd1234\",\n        \"role\": \"shopkeeper\",\n        \"locale\": \"es\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"johndoe@gmail.com\",\n        \"password\": \"abcd1234\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -36,15 +24,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								""
 							]
@@ -56,19 +40,7 @@
 					"name": "Login User",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "JSON Content Type",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"user\": {\n        \"email\": \"johndoe@gmail.com\",\n        \"password\": \"abcd1234\"\n    }\n}",
@@ -79,15 +51,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/sign_in",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/sign_in",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"sign_in"
 							]
@@ -101,36 +69,32 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "access-token",
-								"value": "qKCJdFduICQHZOgiqR2OGw",
-								"type": "text"
-							},
-							{
 								"key": "token-type",
 								"value": "Bearer",
 								"type": "text"
 							},
 							{
-								"key": "client",
-								"value": "FFVEcsqkCnczRxfqBr2tug",
+								"key": "uid",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"key": "client",
+								"value": "{{client}}",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/sign_out",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/sign_out",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"sign_out"
 							]
@@ -147,39 +111,20 @@
 					"name": "Get all Foods",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "token-type",
-								"value": "Bearer",
-								"type": "text"
-							},
-							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
-								"type": "text"
-							},
-							{
-								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/foods",
-							"protocol": "http",
+							"raw": "{{base_url}}/foods?page=1",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"foods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -189,40 +134,15 @@
 					"name": "Get Food by ID",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "client",
-								"value": "HEsLWb-4cIQdWG-ok4TzyA",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "NEgjAz2c8ofDiDiNyowKNQ",
-								"type": "text"
-							},
-							{
-								"key": "token-type",
-								"value": "Bearer",
-								"type": "text"
-							},
-							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/foods/GMlh0Y",
-							"protocol": "http",
+							"raw": "{{base_url}}/foods/da2h4w",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"foods",
-								"GMlh0Y"
+								"da2h4w"
 							]
 						}
 					},
@@ -239,36 +159,32 @@
 						"method": "GET",
 						"header": [
 							{
+								"key": "uid",
+								"value": "{{uid}}",
+								"type": "text"
+							},
+							{
 								"key": "token-type",
 								"value": "Bearer",
 								"type": "text"
 							},
 							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"key": "access-token",
+								"value": "{{access-token}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders",
-							"protocol": "http",
+							"raw": "{{base_url}}/orders",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"orders"
 							]
 						}
@@ -281,51 +197,32 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "client",
-								"value": "cMluO5I3pipJRXidoAgSVw",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "h2gKIOHVRNnUAMv--xPPsQ",
-								"type": "text"
-							},
-							{
 								"key": "token-type",
 								"value": "Bearer",
 								"type": "text"
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "JSON Content Type",
+								"key": "access-token",
+								"value": "{{access-token}}",
 								"type": "text"
 							},
 							{
-								"key": "Accept",
-								"value": "application/json",
+								"key": "client",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"order\": {\n        \"status\": 0\n    }\n}"
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders",
-							"protocol": "http",
+							"raw": "{{base_url}}/orders",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"orders"
 							]
 						}
@@ -344,30 +241,26 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{client}}",
 								"type": "text"
 							},
 							{
 								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{access-token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders/vaQTEv",
-							"protocol": "http",
+							"raw": "{{base_url}}/orders/vaQTEv",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"orders",
 								"vaQTEv"
 							]
@@ -382,9 +275,6 @@
 			"item": [
 				{
 					"name": "Display Cart details",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -395,40 +285,27 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{access-token}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/carts",
-							"protocol": "http",
+							"raw": "{{base_url}}/current_cart",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
-								"carts"
+								"current_cart"
 							]
 						}
 					},
@@ -437,18 +314,8 @@
 				{
 					"name": "Empty Cart",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [
-							{
-								"key": "client",
-								"value": "cMluO5I3pipJRXidoAgSVw",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "h2gKIOHVRNnUAMv--xPPsQ",
-								"type": "text"
-							},
 							{
 								"key": "token-type",
 								"value": "Bearer",
@@ -456,27 +323,18 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "JSON Content Type",
-								"type": "text",
-								"disabled": true
+								"key": "client",
+								"value": "{{client}}",
+								"type": "text"
 							},
 							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "Cookie",
-								"value": "_app_session=user_id%3D123",
-								"type": "text",
-								"disabled": true
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -489,17 +347,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/carts/4",
-							"protocol": "http",
+							"raw": "{{base_url}}/current_cart/empty",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
-								"carts",
-								"4"
+								"current_cart",
+								"empty"
 							]
 						}
 					},
@@ -522,23 +376,23 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							},
-							{
-								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"food_id\": 9,\n    \"quantity\": 2\n}",
+							"raw": "{\n    \"food_id\": \"dLBhAY\",\n    \"quantity\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -546,16 +400,51 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/line_items",
-							"protocol": "http",
+							"raw": "{{base_url}}/line_items",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"line_items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Line Item by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token-type",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "{{uid}}",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "{{client}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/line_items/kDGsbY",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"line_items",
+								"kDGsbY"
 							]
 						}
 					},
@@ -573,33 +462,29 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{client}}",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/line_items/YKasyd/add",
-							"protocol": "http",
+							"raw": "{{base_url}}/line_items/Mm9sxM/increase",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"line_items",
-								"YKasyd",
-								"add"
+								"Mm9sxM",
+								"increase"
 							]
 						}
 					},
@@ -617,32 +502,28 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{access-token}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/line_items/YKasyd/reduce",
-							"protocol": "http",
+							"raw": "{{base_url}}/line_items/Mm9sxM/reduce",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"line_items",
-								"YKasyd",
+								"Mm9sxM",
 								"reduce"
 							]
 						}
@@ -661,30 +542,26 @@
 							},
 							{
 								"key": "uid",
-								"value": "johndoe@gmail.com",
+								"value": "{{uid}}",
 								"type": "text"
 							},
 							{
 								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
+								"value": "{{access-token}}",
 								"type": "text"
 							},
 							{
 								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/line_items/YKasyd",
-							"protocol": "http",
+							"raw": "{{base_url}}/line_items/YKasyd",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"line_items",
 								"YKasyd"
 							]
@@ -701,39 +578,20 @@
 					"name": "Get all Discounts",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "token-type",
-								"value": "Bearer",
-								"type": "text"
-							},
-							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
-								"type": "text"
-							},
-							{
-								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/discounts",
-							"protocol": "http",
+							"raw": "{{base_url}}/discounts?page=1",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"discounts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -743,40 +601,15 @@
 					"name": "Get Discount by ID",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "token-type",
-								"value": "Bearer",
-								"type": "text"
-							},
-							{
-								"key": "uid",
-								"value": "johndoe@gmail.com",
-								"type": "text"
-							},
-							{
-								"key": "access-token",
-								"value": "8l4pQeEneWPmC1Lg6qY9Mw",
-								"type": "text"
-							},
-							{
-								"key": "client",
-								"value": "N3CaQNZhMKaA_z3i077cfw",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/discounts/wqnh2M",
-							"protocol": "http",
+							"raw": "{{base_url}}/discounts/w54hBE",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"discounts",
-								"wqnh2M"
+								"w54hBE"
 							]
 						}
 					},
@@ -802,28 +635,17 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
-										"type": "text"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"description": "JSON Content Type",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
@@ -837,15 +659,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/foods",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/foods",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"foods"
 									]
@@ -865,32 +683,34 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/foods",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/foods?page=3",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"foods"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										}
 									]
 								}
 							},
@@ -908,30 +728,26 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/GMlh0Y",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/foods/GMlh0Y",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"foods",
 										"GMlh0Y"
@@ -952,17 +768,17 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
@@ -976,15 +792,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/GMlh0Y",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/foods/GMlh0Y",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"foods",
 										"GMlh0Y"
@@ -1005,22 +817,22 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/wPJhOk",
+									"raw": "http://localhost:3000/api/v1/shopkeeper/foods/wPJhkG",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1031,99 +843,7 @@
 										"v1",
 										"shopkeeper",
 										"foods",
-										"wPJhOk"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Carts",
-					"item": [
-						{
-							"name": "Get all Carts",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "token-type",
-										"value": "Bearer",
-										"type": "text"
-									},
-									{
-										"key": "uid",
-										"value": "jdoe@gmail.com",
-										"type": "text"
-									},
-									{
-										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
-										"type": "text"
-									},
-									{
-										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/carts",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"v1",
-										"shopkeeper",
-										"carts"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Cart by ID",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "token-type",
-										"value": "Bearer",
-										"type": "text"
-									},
-									{
-										"key": "uid",
-										"value": "jdoe@gmail.com",
-										"type": "text"
-									},
-									{
-										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
-										"type": "text"
-									},
-									{
-										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/carts/jopskM",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"v1",
-										"shopkeeper",
-										"carts",
-										"jopskM"
+										"wPJhkG"
 									]
 								}
 							},
@@ -1146,30 +866,26 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/orders",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/orders",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"orders"
 									]
@@ -1189,17 +905,17 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
@@ -1233,17 +949,17 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
@@ -1257,15 +973,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/orders/mWoTQm",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/orders/mWoTQm",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"orders",
 										"mWoTQm"
@@ -1291,30 +1003,26 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/discounts",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"discounts"
 									]
@@ -1334,30 +1042,26 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/wqnh2M",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/discounts/wqnh2M",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"discounts",
 										"wqnh2M"
@@ -1378,23 +1082,23 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"discounted_food_id\": 18,\n    \"combination_food_id\": 15,\n    \"discount_rate\": 75\n}",
+									"raw": "{\n    \"discounted_food_id\": \"dBmhqG\",\n    \"combination_food_id\": \"w3Phe3\",\n    \"discount_rate\": 18\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1402,15 +1106,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/discounts",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"discounts"
 									]
@@ -1430,23 +1130,23 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"discount_rate\": 9\n}",
+									"raw": "{\n    \"discount_rate\": 20\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1454,18 +1154,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/wqnh2M",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/discounts/EeNhDw",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"discounts",
-										"wqnh2M"
+										"EeNhDw"
 									]
 								}
 							},
@@ -1483,33 +1179,29 @@
 									},
 									{
 										"key": "uid",
-										"value": "jdoe@gmail.com",
+										"value": "{{uid}}",
 										"type": "text"
 									},
 									{
 										"key": "access-token",
-										"value": "2DzmHRzry9UUFb9qI0v0Fg",
+										"value": "{{access-token}}",
 										"type": "text"
 									},
 									{
 										"key": "client",
-										"value": "RL3u44T_LI2uRhA0s5cb7w",
+										"value": "{{client}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/shopkeeper/discounts/EVAhmG",
-									"protocol": "http",
+									"raw": "{{base_url}}/shopkeeper/discounts/GLWhWM",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"shopkeeper",
 										"discounts",
-										"EVAhmG"
+										"GLWhWM"
 									]
 								}
 							},
@@ -1518,6 +1210,40 @@
 					]
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "uid",
+			"value": "johndoe@gmail.com"
+		},
+		{
+			"key": "access-token",
+			"value": "_fC1ptzB88npGZWOPzvBVg"
+		},
+		{
+			"key": "client",
+			"value": "SmlxA_DXBARQCH-TBiUiiA"
 		}
 	]
 }

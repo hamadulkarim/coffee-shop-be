@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 2022_12_30_204322) do
   end
 
   create_table "discounts", force: :cascade do |t|
-    t.float "discount_rate", default: 20.3, null: false
-    t.bigint "discounted_food_id", null: false
+    t.float "discount_rate", default: 0.0, null: false
     t.bigint "combination_food_id", null: false
+    t.bigint "discounted_food_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["combination_food_id"], name: "index_discounts_on_combination_food_id"
@@ -33,21 +33,21 @@ ActiveRecord::Schema.define(version: 2022_12_30_204322) do
   end
 
   create_table "foods", force: :cascade do |t|
-    t.string "name", default: "Pizza", null: false
-    t.string "description", default: "Italian food", null: false
-    t.float "price", default: 8.99, null: false
-    t.float "tax_rate", default: 11.3, null: false
+    t.float "price", default: 0.0, null: false
+    t.float "tax_rate", default: 0.0, null: false
+    t.integer "category", default: 0, null: false
+    t.integer "prep_mins", default: 0, null: false
     t.integer "status", default: 0, null: false
-    t.integer "prep_mins", default: 5, null: false
-    t.integer "category", default: 1, null: false
+    t.string "description", default: "", null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "quantity", default: 2, null: false
-    t.bigint "food_id", null: false
+    t.integer "quantity", default: 1, null: false
     t.bigint "cart_id"
+    t.bigint "food_id", null: false
     t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,24 +69,24 @@ ActiveRecord::Schema.define(version: 2022_12_30_204322) do
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "provider", default: "email", null: false
-    t.string "email", null: false
-    t.string "uid", null: false
-    t.string "encrypted_password", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "confirmation_sent_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
+    t.datetime "last_sign_in_at"
     t.string "last_sign_in_ip"
-    t.string "unconfirmed_email"
+    t.boolean "must_change_password", default: false
+    t.string "provider", default: "email", null: false
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.integer "sign_in_count", default: 0
     t.json "tokens", default: {}, null: false
-    t.boolean "must_change_password", default: false
+    t.string "uid", null: false
+    t.string "unconfirmed_email"
     t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

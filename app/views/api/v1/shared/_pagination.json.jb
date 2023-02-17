@@ -1,0 +1,6 @@
+{
+  displayed_items: pagy.in,
+  total_items: pagy.count,
+  current_page: pagy.page,
+  total_pages: pagy.pages
+}

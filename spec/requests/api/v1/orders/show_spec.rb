@@ -7,8 +7,8 @@ describe 'GET /api/v1/orders/:id', { type: :request, skip_request: true } do
   context 'with user not signed in' do
     include_examples 'have http status', :unauthorized
 
-    specify do
-      expect(JSON.parse(response.body)['errors']).to include('Authentication is required to perform this action')
+    it do
+      expect(json[:errors]).to include('Authentication is required to perform this action')
     end
   end
 
@@ -17,15 +17,15 @@ describe 'GET /api/v1/orders/:id', { type: :request, skip_request: true } do
 
     include_examples 'have http status', :ok
 
-    specify 'renders show template' do
+    it 'renders show template' do
       expect(response).to render_template('show')
     end
 
-    specify 'checks instance variable' do
+    it 'checks instance variable' do
       expect(assigns(:order)).to eq(order)
     end
 
-    specify 'checks data returned' do
+    it 'checks data returned' do
       expect(json[:body][:order]).to include(
         {
           id: order.hashid,
@@ -35,11 +35,12 @@ describe 'GET /api/v1/orders/:id', { type: :request, skip_request: true } do
           total_discount: order.total_discount,
           total_bill: order.total_bill,
           items: [
-            id: line_item.hashid,
-            quantity: line_item.quantity,
-            order: line_item.order_id,
-            food: line_item.food.name,
-            total_price: line_item.total_price.round(3)
+            {
+              id: line_item.hashid,
+              quantity: line_item.quantity,
+              food: line_item.food.name,
+              total_price: line_item.total_price.round(3)
+            }
           ]
         }
       )

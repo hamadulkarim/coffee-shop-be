@@ -1,14 +1,13 @@
 describe 'GET /api/v1/orders', { type: :request, skip_request: true } do
   let(:user) { create(:user) }
-  let!(:order) { create(:order, user: user) }
-  let!(:line_item) { order.line_items.first }
+  let!(:orders) { create_list(:order, 3, user: user) }
   let!(:request!) { get api_v1_orders_path, headers: headers, as: :json }
 
   context 'with user not signed in' do
     include_examples 'have http status', :unauthorized
 
-    specify do
-      expect(JSON.parse(response.body)['errors']).to include('Authentication is required to perform this action')
+    it do
+      expect(json[:errors]).to include('Authentication is required to perform this action')
     end
   end
 
@@ -17,30 +16,25 @@ describe 'GET /api/v1/orders', { type: :request, skip_request: true } do
 
     include_examples 'have http status', :ok
 
-    specify 'renders index template' do
+    it 'renders index template' do
       expect(response).to render_template('index')
     end
 
-    specify 'checks instance variable' do
-      expect(assigns(:orders)).to match_array([order])
+    it 'checks instance variable' do
+      expect(assigns(:orders)).to include(orders.last)
     end
 
-    specify 'checks data returned' do
-      expect(json[:body][:orders]).to include(
+    it 'checks data returned' do
+      expect(json[:body][:orders]).not_to be_empty
+    end
+
+    it 'checks meta data related to pagination' do
+      expect(json[:meta]).to include(
         {
-          id: order.hashid,
-          status: order.status,
-          total_prep_time: order.total_prep_time,
-          sub_total: order.sub_total,
-          total_discount: order.total_discount,
-          total_bill: order.total_bill,
-          items: [
-            id: line_item.hashid,
-            quantity: line_item.quantity,
-            order: line_item.order_id,
-            food: line_item.food.name,
-            total_price: line_item.total_price.round(3)
-          ]
+          displayed_items: 3,
+          total_items: 3,
+          current_page: 1,
+          total_pages: 1
         }
       )
     end

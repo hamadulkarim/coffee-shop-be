@@ -5,8 +5,7 @@ module Api
       skip_before_action :authenticate_user!, only: %i[index show]
 
       def index
-        @pagy, @foods = pagy(Food.all.order(:name))
-        # TODO: do we need this?
+        @pagy, @foods = pagy(Food.paid.available.order(:name))
       end
 
       def show; end

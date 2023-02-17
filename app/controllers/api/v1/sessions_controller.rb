@@ -1,7 +1,6 @@
 module Api
   module V1
     class SessionsController < DeviseTokenAuth::SessionsController
-      # TODO: order include statements
       include ActAsApiRequest
       include DeviseTokenAuth::Concerns::SetUserByToken
       include ExceptionHandler
@@ -9,8 +8,6 @@ module Api
       before_action :authenticate_user!, only: :destroy
 
       private
-
-      # TODO: order methods here as well
 
       def render_create_error_bad_credentials
         render_errors(I18n.t('errors.authentication.invalid_credentials'), :forbidden)

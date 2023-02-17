@@ -18,7 +18,7 @@ describe 'POST /api/v1/users', { type: :request } do
 
     include_examples 'have http status', :ok
 
-    specify do
+    it do
       expect(json[:user]).to include_json(
         id: created_user.hashid,
         first_name: created_user.first_name,

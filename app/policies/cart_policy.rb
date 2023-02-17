@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CartPolicy < ApplicationPolicy
-  def display?
+  def show?
     user.customer?
   end
 
-  alias empty? display?
+  alias empty? show?
 end

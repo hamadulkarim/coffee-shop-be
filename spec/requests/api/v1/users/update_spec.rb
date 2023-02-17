@@ -19,7 +19,7 @@ describe 'PUT /api/v1/user', { type: :request } do
 
       include_examples 'have http status', :ok
 
-      specify do
+      it do
         expect(json[:user]).to include_json(
           first_name: 'Darth',
           last_name: 'Vader'
@@ -61,7 +61,7 @@ describe 'PUT /api/v1/user', { type: :request } do
 
           it { expect(user.valid_password?('newPassword')).to be(true) }
 
-          specify do
+          it do
             expect(json[:user]).to include_json(
               id: user.hashid,
               first_name: user.first_name,

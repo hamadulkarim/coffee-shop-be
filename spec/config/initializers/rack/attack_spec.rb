@@ -20,7 +20,7 @@ describe Rack::Attack, type: :request do
     let(:headers) { {} }
 
     context 'when the number of requests is lower than the limit' do
-      specify do
+      it do
         within_limit_request do
           expect(response).not_to have_http_status(:too_many_requests)
         end
@@ -28,13 +28,13 @@ describe Rack::Attack, type: :request do
     end
 
     context 'when the number of requests is higher than the limit' do
-      specify do
+      it do
         exceed_limit_request do
           expect(response).to have_http_status(:too_many_requests)
         end
       end
 
-      specify do
+      it do
         exceed_limit_request do
           expect(json[:errors]).to include('Throttle limit reached')
         end
@@ -54,7 +54,7 @@ describe Rack::Attack, type: :request do
       let(:headers) { { REMOTE_ADDR: '1.2.3.4' } }
 
       context 'when the number of requests is lower than the limit' do
-        specify do
+        it do
           within_limit_request do
             expect(response).not_to have_http_status(:too_many_requests)
           end
@@ -62,13 +62,13 @@ describe Rack::Attack, type: :request do
       end
 
       context 'when the number of requests is higher than the limit' do
-        specify do
+        it do
           exceed_limit_request do
             expect(response).to have_http_status(:too_many_requests)
           end
         end
 
-        specify do
+        it do
           exceed_limit_request do
             expect(json[:errors]).to include('Throttle limit reached')
           end

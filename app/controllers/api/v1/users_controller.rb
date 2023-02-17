@@ -13,8 +13,6 @@ module Api
 
       private
 
-      # TODO: order methods
-
       def require_check_if_changing_password
         return if !user_params[:password] || user.valid_password?(params[:password_check])
 

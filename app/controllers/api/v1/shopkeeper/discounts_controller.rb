@@ -1,8 +1,6 @@
 module Api
   module V1
     module Shopkeeper
-      # TODO: moving shopkeeper inside shopkeeper namespace
-      # TODO: you can change Api::V1::ShopkeeperController -> ShopkeeperController
       class DiscountsController < BaseController
         before_action :set_discount, only: %i[show update destroy]
 
@@ -13,41 +11,42 @@ module Api
                 .includes(:discounted_food, :combination_food)
                 .all
             )
-          # TODO: why do we need this?
         end
 
         def show; end
 
         def create
           @discount = Discount.new(discount_params)
-          # TODO: can a user another shopkeeper can access this?
 
-          render :show and return if @discount.save
+          return render :show if @discount.save
 
           render_attributes_errors(@discount.errors)
         end
 
         def update
-          # REVIEW:
-          render :show and return if @discount.update(discount_params)
+          return render :show if @discount.update(discount_params)
 
           render_attributes_errors(@discount.errors)
         end
 
-        # REVIEW:
         def destroy
           @discount.destroy
 
-          render :show, status: :no_content
+          head :no_content
         end
 
         private
 
         def discount_params
-          # REVIEW
           params
             .require(:discount)
             .permit(:discount_rate, :discounted_food_id, :combination_food_id)
+            .tap do |permitted_params|
+              permitted_params[:combination_food_id] =
+                Food.decode_id(permitted_params[:combination_food_id])
+              permitted_params[:discounted_food_id] =
+                Food.decode_id(permitted_params[:discounted_food_id])
+            end
         end
 
         def set_discount

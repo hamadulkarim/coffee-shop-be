@@ -1,7 +1,5 @@
-# TODO: id is missing here
 {
   id: cart.hashid,
-  user: current_user.first_name,
   total_prep_time: cart.total_prep_time,
   sub_total: cart.sub_total,
   total_discount: cart.total_discount,

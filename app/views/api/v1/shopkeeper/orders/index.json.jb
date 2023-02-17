@@ -5,10 +5,5 @@
     orders: (render partial: 'api/v1/orders/order', collection: @orders, as: :order)
   },
 
-  pagination: {
-    displayed_orders: @pagy.items,
-    total_orders: @pagy.count,
-    current_page: @pagy.in,
-    total_pages: @pagy.pages
-  }
+  meta: render('api/v1/shared/pagination', pagy: @pagy)
 }

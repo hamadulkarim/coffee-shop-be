@@ -3,7 +3,7 @@
 # Table name: discounts
 #
 #  id                  :bigint           not null, primary key
-#  discount_rate       :float            default(20.3), not null
+#  discount_rate       :float            default(0.0), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  combination_food_id :bigint           not null, indexed
@@ -21,8 +21,6 @@
 #
 
 class Discount < ApplicationRecord
-  include Hashid::Rails
-
   belongs_to :combination_food, class_name: 'Food'
   belongs_to :discounted_food, class_name: 'Food'
 
@@ -39,8 +37,7 @@ class Discount < ApplicationRecord
   private
 
   def not_on_complementary_foods
-    # resolve
-    return if discounted_food.paid? && combination_food.paid?
+    return if discounted_food&.paid? && combination_food&.paid?
 
     errors.add(:order, 'can not be created on complementary foods')
   end

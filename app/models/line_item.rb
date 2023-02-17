@@ -3,7 +3,7 @@
 # Table name: line_items
 #
 #  id         :bigint           not null, primary key
-#  quantity   :integer          default(2), not null
+#  quantity   :integer          default(1), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  cart_id    :bigint           indexed
@@ -23,19 +23,14 @@
 #  fk_rails_...  (order_id => orders.id)
 #
 class LineItem < ApplicationRecord
-  include Hashid::Rails
-
-  belongs_to :food
   belongs_to :cart, optional: true
+  belongs_to :food
   belongs_to :order, optional: true
 
-  # REVIEW
   validates :cart_id, presence: true, unless: -> { order_id? }
   validates :food_id, uniqueness: { scope: :cart_id }
   validates :order_id, presence: true, unless: -> { cart_id? }
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 1 }
-  # resolve
-  validates :quantity, numericality: { equal_to: 1 }, if: -> { food.complementary? }
 
   validate :food_is_in_stock, on: :create
 
@@ -46,7 +41,7 @@ class LineItem < ApplicationRecord
   private
 
   def food_is_in_stock
-    return if food.status == 'available'
+    return if food&.status == 'available'
 
     errors.add(:food, 'should be available')
   end

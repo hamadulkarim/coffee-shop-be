@@ -27,11 +27,58 @@ Layout/LineLength:
   Exclude:
     - config/**/*
 
+Lint/MissingSuper:
+  Exclude:
+    - app/services/bill_processor.rb
+
 Metrics/BlockLength:
   Exclude:
     - config/**/*
     - spec/**/*
     - lib/tasks/auto_annotate_models.rake
+
+Rails/I18nLocaleTexts:
+  Exclude:
+    - app/models/order.rb
+
+Rails/InverseOf:
+  Exclude:
+    - app/models/food.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - app/controllers/api/v1/orders_controller.rb
+
+Rails/TransactionExitStatement:
+  Exclude:
+    - app/controllers/api/v1/orders_controller.rb
+
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - app/models/discount.rb
+    - app/models/line_item.rb
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/requests/**/*.rb
+
+RSpec/LetSetup:
+  Exclude:
+    - spec/requests/**/*.rb
+    - spec/services/*.rb
+
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/requests/**/*.rb
+    - spec/services/*.rb
+
+RSpec/RepeatedDescription:
+  Exclude:
+    - spec/requests/**/*.rb
+
+RSpec/RepeatedExample:
+  Exclude:
+    - spec/requests/**/*.rb
 
 Style/BlockDelimiters:
   EnforcedStyle: braces_for_chaining

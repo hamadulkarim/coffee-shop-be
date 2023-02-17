@@ -1,11 +1,14 @@
 describe 'PATCH /api/v1/shopkeeper/discounts/:id', { type: :request, skip_request: true } do
-  let(:user) { create(:user, role: 'shopkeeper') }
-  let!(:discounted_food) { create(:food) }
-  let!(:combination_food) { create(:food) }
+  let(:shopkeeper) { create(:user, role: 'shopkeeper') }
   let!(:discount) { create(:discount) }
-  let!(:params) do
-    { discounted_food_id: discounted_food.id, combination_food_id: combination_food.id,
-      discount_rate: 10 }
+  let(:discounted_food)  { create(:food, name: 'Cupcake', price: 7.7) }
+  let(:combination_food) { create(:food, name: 'Tea') }
+  let(:params) do
+    {
+      combination_food_id: combination_food.hashid,
+      discounted_food_id: discounted_food.hashid,
+      discount_rate: 25
+    }
   end
 
   let!(:request!) do
@@ -15,35 +18,50 @@ describe 'PATCH /api/v1/shopkeeper/discounts/:id', { type: :request, skip_reques
   context 'with shopkeeper not signed in' do
     include_examples 'have http status', :unauthorized
 
-    specify do
-      expect(JSON.parse(response.body)['errors']).to include('Authentication is required to perform this action')
+    it do
+      expect(json[:errors]).to include('Authentication is required to perform this action')
     end
   end
 
   context 'with shopkeeper signed in' do
-    let(:headers) { auth_headers }
+    let(:headers) { shopkeeper_auth_headers }
     let(:updated_discount) { Discount.last }
 
-    include_examples 'have http status', :ok
+    context 'with valid params' do
+      include_examples 'have http status', :ok
 
-    specify 'renders show template' do
-      expect(response).to render_template('show')
+      it 'renders show template' do
+        expect(response).to render_template('show')
+      end
+
+      it 'checks instance variable' do
+        expect(assigns(:discount)).to eq(updated_discount)
+      end
+
+      it 'checks data returned' do
+        expect(json[:body][:discount]).to include(
+          {
+            id: discount.hashid,
+            discount_on: 'Cupcake',
+            in_combination: 'Tea',
+            discount_rate: 25,
+            amount_discounted: 1.925
+          }
+        )
+      end
     end
 
-    specify 'checks instance variable' do
-      expect(assigns(:discount)).to eq(updated_discount)
-    end
+    context 'with invalid params, it returns 422' do
+      let!(:params) { { discount_rate: 0 } }
 
-    specify 'checks data returned' do
-      expect(json[:body][:discount]).to include(
-        {
-          id: updated_discount.hashid,
-          discount_on: updated_discount.discounted_food.name,
-          in_combination: updated_discount.combination_food.name,
-          discount_rate: updated_discount.discount_rate,
-          amount_discounted: updated_discount.amount_discounted
-        }
-      )
+      include_examples 'have http status', :unprocessable_entity
     end
+  end
+
+  context 'with customer user signed in' do
+    let(:user) { create(:user) }
+    let(:headers) { auth_headers }
+
+    include_examples 'have http status', :unauthorized
   end
 end

@@ -11,8 +11,6 @@ module Api
               .includes(:discounted_food, :combination_food)
               .all
           )
-
-        # TODO: do we need this?
       end
 
       def show; end

@@ -17,21 +17,13 @@
 #
 
 class Cart < ApplicationRecord
-  include Hashid::Rails
-
   belongs_to :user
-
   has_many :line_items, dependent: :destroy
   has_many :foods, through: :line_items
 
-  # TODO: why are we validating the uniqueness of food?
-
   delegate :sub_total, to: :bill_processor
-
   delegate :total_bill, to: :bill_processor
-
   delegate :total_discount, to: :bill_processor
-
   delegate :total_prep_time, to: :bill_processor
 
   private

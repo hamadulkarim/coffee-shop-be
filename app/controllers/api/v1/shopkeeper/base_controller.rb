@@ -1,4 +1,3 @@
-# TODO: this file should be in shopkeeper scope
 module Api
   module V1
     module Shopkeeper
@@ -7,7 +6,6 @@ module Api
 
         private
 
-        # REVIEW:
         def require_shopkeeper!
           return if current_user.shopkeeper?
 

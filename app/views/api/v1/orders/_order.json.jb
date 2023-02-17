@@ -1,5 +1,4 @@
 {
-  # TODO: id is missing here
   id: order.hashid,
   status: order.status,
   total_prep_time: order.total_prep_time,

@@ -8,4 +8,8 @@ module RequestHelpers
   def auth_headers
     @auth_headers ||= user.create_new_auth_token
   end
+
+  def shopkeeper_auth_headers
+    @shopkeeper_auth_headers ||= shopkeeper.create_new_auth_token
+  end
 end

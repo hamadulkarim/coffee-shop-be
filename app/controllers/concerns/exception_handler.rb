@@ -3,6 +3,7 @@ module ExceptionHandler
 
   included do
     rescue_from StandardError, with: :handle_standard_error
+    rescue_from ActionDispatch::Http::Parameters::ParseError, with: :handle_json_parse_error
     rescue_from ActionController::ParameterMissing, with: :render_parameter_missing
     rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
     rescue_from ActionView::Template::Error, with: :handle_template_error
@@ -12,6 +13,10 @@ module ExceptionHandler
   end
 
   private
+
+  def handle_json_parse_error(_exception)
+    render_errors(I18n.t('errors.invalid_format'), :bad_request)
+  end
 
   def handle_standard_error(exception)
     raise exception if Rails.env.test?
@@ -60,12 +65,7 @@ module ExceptionHandler
     render_errors(I18n.t('errors.record_not_found', model: exception.model), :not_found)
   end
 
-  # TODO: do we need this method
-
-  # TODO: check if we can completely remove sentry
-
   def user_not_authorized
-    # TODO: use internationalization here
     render_errors(I18n.t('errors.unauthorized'), :unauthorized)
   end
 end

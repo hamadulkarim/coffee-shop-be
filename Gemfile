@@ -19,6 +19,7 @@ gem 'dotenv-rails', '~> 2.7.6'
 
 # Async worker
 gem 'sidekiq', '~> 6.5.1'
+gem 'sidekiq-cron'
 
 gem 'hashid-rails', '~> 1.0'
 
@@ -63,6 +64,3 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# TODO: this gem should'nt be placed here
-# gem 'pundit', '~> 2.3'

@@ -36,26 +36,32 @@
 #
 
 class User < ApplicationRecord
-  include Hashid::Rails
-
   devise :database_authenticatable, :recoverable,
          :trackable, :validatable, :registerable
 
   include DeviseTokenAuth::Concerns::User
   serialize :tokens
 
-  has_one :cart, dependent: :destroy
-  has_many :orders, dependent: :destroy
-
-  # TODO: localization was not a requirement, why are we using it
-
-  # TODO: enums come after callbacks
   enum role: {
     customer: 0,
     shopkeeper: 1
   }.freeze
 
+  has_one :cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
+  validate :only_one_shopkeeper, on: :create
+
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+
+  def only_one_shopkeeper
+    return if customer?
+    return unless User.shopkeeper.exists?
+
+    errors.add(:shopkeeper, 'can be only one')
   end
 end

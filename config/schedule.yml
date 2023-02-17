@@ -1,0 +1,5 @@
+update_order_job:
+  cron: "'*/5 * * * *"
+  class: 'UpdateOrderJob'
+  name: 'Update Order Job - every 5min'
+  queue: default

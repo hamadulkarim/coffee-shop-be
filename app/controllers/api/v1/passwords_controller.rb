@@ -1,7 +1,6 @@
 module Api
   module V1
     class PasswordsController < DeviseTokenAuth::PasswordsController
-      # TODO: order include statements
       include ActAsApiRequest
       include DeviseTokenAuth::Concerns::SetUserByToken
       include ExceptionHandler
@@ -30,8 +29,6 @@ module Api
       end
 
       private
-
-      # TODO: order methods here as well
 
       def render_create_success
         head(:no_content)

@@ -15,7 +15,7 @@ module Api
       end
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name, :role)
+        params.require(:user).permit(:email, :password, :first_name, :last_name)
       end
 
       def validate_post_data(which, message)

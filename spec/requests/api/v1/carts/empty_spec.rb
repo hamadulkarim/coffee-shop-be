@@ -6,8 +6,8 @@ describe 'PATCH /api/v1/current_cart/empty', { type: :request, skip_request: tru
   context 'with user not signed in' do
     include_examples 'have http status', :unauthorized
 
-    specify do
-      expect(JSON.parse(response.body)['errors']).to include('Authentication is required to perform this action')
+    it do
+      expect(json[:errors]).to include('Authentication is required to perform this action')
     end
   end
 
@@ -16,24 +16,32 @@ describe 'PATCH /api/v1/current_cart/empty', { type: :request, skip_request: tru
 
     include_examples 'have http status', :ok
 
-    specify 'renders display template' do
-      expect(response).to render_template('display')
+    it 'renders show template' do
+      expect(response).to render_template('show')
     end
 
-    specify 'checks instance variable' do
+    it 'checks instance variable' do
       expect(assigns(:current_cart)).to eq(cart)
     end
 
-    specify 'checks data returned' do
+    it 'checks data returned' do
       expect(json[:body][:current_cart]).to include(
         {
-          user: user.first_name,
-          total_prep_time: cart.total_prep_time,
-          total_bill: cart.total_bill,
-          total_discount: cart.total_discount,
+          id: cart.hashid,
+          total_prep_time: 0,
+          sub_total: 0,
+          total_discount: 0,
+          total_bill: 0,
           items: []
         }
       )
     end
+  end
+
+  context 'with shopkeeper signed in, it returns 401' do
+    let(:shopkeeper) { create(:user, role: 'shopkeeper') }
+    let(:headers) { shopkeeper_auth_headers }
+
+    include_examples 'have http status', :unauthorized
   end
 end

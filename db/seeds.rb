@@ -1,13 +1,22 @@
-# This is not the place for test data
-# Only use this to put the necessary setup for the app to work
-# Separate the seeds in different Seed Service Objects
-# The data can then be loaded with the rails db:seed command
+# Creating Shopkeeper Account
+Rails.logger.debug 'Creating Shopkeeper User......'
+FactoryBot.create(:user, email: 'admin@coffee.com', role: 'shopkeeper')
 
-FactoryBot.create(:user)
+# Creating 5 Customer Accounts
+Rails.logger.debug 'Creating Customer Users......'
+FactoryBot.create_list(:user, 5)
 
-5.times do
-  FactoryBot.create(:food, :complementary, :out_of_stock)
-  FactoryBot.create(:food, :complementary, :available)
-  FactoryBot.create(:food, :paid, :out_of_stock)
-  FactoryBot.create(:food, :complementary, :available)
-end
+# Creating different types of Food w.r.t their status and category
+Rails.logger.debug 'Creating Foods......'
+FactoryBot.create_list(:food, 5, :complementary, :out_of_stock)
+FactoryBot.create_list(:food, 5, :complementary, :available)
+FactoryBot.create_list(:food, 5, :paid, :out_of_stock)
+FactoryBot.create_list(:food, 5, :paid, :available)
+
+# Creating Discounts
+Rails.logger.debug 'Creating Discounts......'
+FactoryBot.create_list(:discount, 3)
+
+# Creating Orders
+Rails.logger.debug 'Creating Orders......'
+FactoryBot.create_list(:order, 2)

@@ -7,7 +7,7 @@ describe 'GET /api/v1/users/validate_token', { type: :request } do
 
     include_examples 'have http status', :ok
 
-    specify do
+    it do
       expect(json[:user]).to include_json(
         id: user.hashid,
         first_name: user.first_name,

@@ -1,4 +1,3 @@
-# TODO: need explanation for this
 class ApplicationService
   class << self
     def call(*args, &block)

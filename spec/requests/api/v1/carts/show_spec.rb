@@ -1,8 +1,7 @@
-describe 'DELETE /api/v1/line_items/:id', { type: :request, skip_request: true } do
+describe 'GET /api/v1/current_cart', { type: :request, skip_request: true } do
   let(:user) { create(:user) }
-  let(:cart) { create(:cart, user: user) }
-  let!(:line_item) { create(:line_item, cart: cart) }
-  let!(:request!) { delete api_v1_line_item_path(line_item), headers: headers, as: :json }
+  let!(:cart) { create(:cart, user: user) }
+  let!(:request!) { get api_v1_show_current_cart_path, headers: headers, as: :json }
 
   context 'with user not signed in' do
     include_examples 'have http status', :unauthorized
@@ -15,14 +14,27 @@ describe 'DELETE /api/v1/line_items/:id', { type: :request, skip_request: true }
   context 'with customer user signed in' do
     let(:headers) { auth_headers }
 
-    include_examples 'have http status', :no_content
+    include_examples 'have http status', :ok
+
+    it 'renders show template' do
+      expect(response).to render_template('show')
+    end
 
     it 'checks instance variable' do
-      expect(assigns(:line_item)).to eq(line_item)
+      expect(assigns(:current_cart)).to eq(cart)
     end
 
     it 'checks data returned' do
-      expect(response.body).to eq('')
+      expect(json[:body][:current_cart]).to include(
+        {
+          id: cart.hashid,
+          total_prep_time: 0,
+          sub_total: 0,
+          total_discount: 0,
+          total_bill: 0,
+          items: []
+        }
+      )
     end
   end
 
